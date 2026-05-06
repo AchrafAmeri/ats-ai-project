@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Base de données (Phase 5)
+*.db
+*.sqlite3
+
+# Environnement
+.env
+
+# OS
+.DS_Store
