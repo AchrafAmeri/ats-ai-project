@@ -195,8 +195,8 @@ def executer_git(fichier_cible, description_tache):
     commit_msg = f"feat: {desc_propre[:45]}..."
     print("\n[GIT] Vérification des modifications...")
     try:
-        subprocess.run(["git", "config", "--global", "user.name", "Achraf IA Bot"], check=True)
-        subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "AchrafAmeri"], check=True)
+        subprocess.run(["git", "config", "--global", "user.email", "ameriachraftoulouse@gmail.com"], check=True)
         subprocess.run(["git", "add", fichier_cible], check=True)
         subprocess.run(["git", "add", "backlog.json"], check=True)
         
