@@ -1,0 +1,413 @@
+[
+    {
+        "jour": 1,
+        "role": "Architecte Backend Python",
+        "fichier_cible": "backend/main.py",
+        "fichiers_contexte": [],
+        "description": "Initialise une application FastAPI basique. Crée l'instance de l'app, ajoute le middleware CORSMiddleware pour autoriser toutes les origines (allow_origins=['*']), et crée une simple route GET '/' qui renvoie le message de bienvenue {'message': 'ATS API is running'}.",
+        "status": "pending"
+    },
+    {
+        "jour": 2,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/models.py",
+        "fichiers_contexte": [
+            "backend/main.py"
+        ],
+        "description": "Crée les modèles Pydantic pour l'application. Importe BaseModel de pydantic. Crée un modèle `JobOffer` (avec un titre en str, et une description en str) et un modèle `AnalysisResult` (avec score en int, points_forts en list[str], et points_amelioration en list[str]).",
+        "status": "pending"
+    },
+    {
+        "jour": 3,
+        "role": "Ingénieur Sécurité Python",
+        "fichier_cible": "backend/config.py",
+        "fichiers_contexte": [],
+        "description": "Crée un gestionnaire de configuration. Utilise `os` ou `pydantic_settings`. L'application doit pouvoir lire une variable d'environnement 'GEMINI_API_KEY'. Si elle n'est pas présente, la configuration doit renvoyer une erreur explicite ou une valeur par défaut vide.",
+        "status": "pending"
+    },
+    {
+        "jour": 4,
+        "role": "Développeur Python (Spécialiste Data)",
+        "fichier_cible": "backend/services/pdf_extractor.py",
+        "fichiers_contexte": [],
+        "description": "Crée un service pour extraire le texte d'un document. Pour l'instant, crée une fonction asynchrone `extract_text_from_pdf(file_bytes: bytes) -> str`. Puisqu'on n'a pas encore installé PyMuPDF, simule le comportement en retournant un faux texte générique du style 'Texte extrait du CV...'.",
+        "status": "pending"
+    },
+    {
+        "jour": 5,
+        "role": "Ingénieur IA (Prompt Engineer)",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": [
+            "backend/models.py",
+            "backend/config.py"
+        ],
+        "description": "Crée la fonction asynchrone `analyze_cv_vs_job(cv_text: str, job_description: str) -> AnalysisResult`. Pour ce jour, ne fais pas le vrai appel à l'API Gemini. Retourne simplement une instance mockée de `AnalysisResult` avec un score de 75 et quelques points forts bidons. C'est pour préparer la structure.",
+        "status": "pending"
+    },
+    {
+        "jour": 6,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": [
+            "backend/models.py",
+            "backend/services/pdf_extractor.py",
+            "backend/services/ai_matcher.py"
+        ],
+        "description": "Crée un APIRouter FastAPI. Définis une route POST '/analyze' qui prend en paramètre un `UploadFile` (le CV) et un paramètre de formulaire (Form) pour la `job_description`. La route doit lire le fichier, appeler `extract_text_from_pdf`, puis `analyze_cv_vs_job`, et retourner le résultat.",
+        "status": "pending"
+    },
+    {
+        "jour": 7,
+        "role": "Architecte Backend Python",
+        "fichier_cible": "backend/main.py",
+        "fichiers_contexte": [
+            "backend/routes/api.py"
+        ],
+        "description": "Mets à jour le fichier main.py existant. Importe le router défini dans `backend/routes/api.py` et inclus-le dans l'application principale (app.include_router) avec le préfixe '/api/v1'. Conserve la configuration CORS et la route racine existantes.",
+        "status": "pending"
+    },
+    {
+        "jour": 8,
+        "role": "Ingénieur DevOps",
+        "fichier_cible": "requirements.txt",
+        "fichiers_contexte": [],
+        "description": "Crée un fichier requirements.txt à la racine du projet contenant les dépendances essentielles du backend : fastapi, uvicorn, pydantic, pydantic-settings, python-multipart (pour gérer l'upload de fichiers dans l'API) et pymupdf (le package s'appelle 'pymupdf', il sert à extraire le texte des PDF).",
+        "status": "pending"
+    },
+    {
+        "jour": 9,
+        "role": "Développeur Backend (Spécialiste PDF)",
+        "fichier_cible": "backend/services/pdf_extractor.py",
+        "fichiers_contexte": ["backend/services/pdf_extractor.py"],
+        "description": "Met à jour la fonction `extract_text_from_pdf` pour utiliser une vraie implémentation. Importe `fitz` (PyMuPDF). La fonction reçoit des `file_bytes`. Utilise `doc = fitz.Document(stream=file_bytes, filetype='pdf')`, itère sur toutes les pages pour extraire le texte avec `page.get_text()`, concatène le tout et retourne la chaîne de caractères complète.",
+        "status": "pending"
+    },
+    {
+        "jour": 10,
+        "role": "Data Engineer (Traitement du Texte)",
+        "fichier_cible": "backend/utils/text_cleaner.py",
+        "fichiers_contexte": [],
+        "description": "Crée un fichier utilitaire avec une fonction `clean_extracted_text(text: str) -> str`. Utilise le module `re` (expressions régulières) pour nettoyer le texte du CV : remplace les sauts de ligne multiples par un seul, supprime les espaces excessifs, et retire les caractères non imprimables qui pourraient perturber l'IA. Retourne le texte propre.",
+        "status": "pending"
+    },
+    {
+        "jour": 11,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/services/pdf_extractor.py",
+        "fichiers_contexte": ["backend/services/pdf_extractor.py", "backend/utils/text_cleaner.py"],
+        "description": "Importe la fonction `clean_extracted_text` depuis `backend.utils.text_cleaner`. Applique ce nettoyeur sur la chaîne de caractères globale extraite du PDF juste avant que la fonction `extract_text_from_pdf` ne retourne son résultat final.",
+        "status": "pending"
+    },
+    {
+        "jour": 12,
+        "role": "Ingénieur Qualité (QA)",
+        "fichier_cible": "backend/utils/validators.py",
+        "fichiers_contexte": [],
+        "description": "Crée un système de validation de fichiers. Écris une fonction `validate_pdf_file(file: UploadFile)`. Elle doit vérifier que le `content_type` du fichier est bien 'application/pdf'. Si ce n'est pas le cas, elle doit lever une `HTTPException` (status 400) de FastAPI avec un message expliquant que seul le format PDF est accepté.",
+        "status": "pending"
+    },
+    {
+        "jour": 13,
+        "role": "Architecte Backend",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": ["backend/routes/api.py", "backend/utils/validators.py"],
+        "description": "Sécurise la route d'upload. Importe `validate_pdf_file`. Dans la route POST '/analyze', appelle cette fonction de validation sur le fichier uploadé tout au début de la route, avant même d'essayer de lire les bytes du fichier. Si la validation passe, le code continue normalement.",
+        "status": "pending"
+    },
+    {
+        "jour": 14,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": ["backend/routes/api.py"],
+        "description": "Ajoute une gestion d'erreurs robuste (try/except) dans la route '/analyze' lors de l'appel à `extract_text_from_pdf`. Si l'extraction échoue (ex: PDF corrompu ou protégé par mot de passe), attrape l'exception et lève une `HTTPException` 500. Ensuite, vérifie si le texte extrait est vide : si oui, lève une `HTTPException` 400 (PDF illisible ou scanné sans OCR).",
+        "status": "pending"
+    },
+    {
+        "jour": 15,
+        "role": "Ingénieur DevOps",
+        "fichier_cible": "requirements.txt",
+        "fichiers_contexte": ["requirements.txt"],
+        "description": "Ajoute le nouveau SDK officiel de Google pour l'IA à la liste des dépendances. Ajoute la ligne 'google-genai' à la fin du fichier requirements.txt.",
+        "status": "pending"
+    },
+    {
+        "jour": 16,
+        "role": "Ingénieur IA (Prompt Engineer)",
+        "fichier_cible": "backend/utils/prompts.py",
+        "fichiers_contexte": [],
+        "description": "Crée un fichier pour stocker les instructions de l'IA. Définis une constante `SYSTEM_PROMPT_MATCHING`. Ce prompt doit dire à l'IA d'agir comme un recruteur expert. Il doit lui ordonner d'analyser un CV et une Offre, et d'absolument retourner sa réponse au format JSON strict avec les clés exactes : 'score' (entier sur 100), 'points_forts' (liste de strings) et 'points_amelioration' (liste de strings).",
+        "status": "pending"
+    },
+    {
+        "jour": 17,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": ["backend/services/ai_matcher.py", "backend/config.py"],
+        "description": "Modifie le fichier pour initialiser le client Gemini. Importe `os` et la librairie `genai` depuis `google`. Initialise le `client = genai.Client(api_key=...)` en utilisant la clé secrète provenant de ta configuration ou des variables d'environnement.",
+        "status": "pending"
+    },
+    {
+        "jour": 18,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": ["backend/services/ai_matcher.py", "backend/utils/prompts.py"],
+        "description": "Remplace la fonction `analyze_cv_vs_job` existante par le vrai appel à l'API. Importe `SYSTEM_PROMPT_MATCHING`. Formate le message final en combinant le prompt système, le texte du CV et la description de l'offre. Utilise `client.models.generate_content` avec le modèle 'gemini-2.5-flash'. Retourne le texte brut de la réponse pour le moment.",
+        "status": "pending"
+    },
+    {
+        "jour": 19,
+        "role": "Développeur Backend (Spécialiste Data)",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": ["backend/services/ai_matcher.py"],
+        "description": "Ajoute une logique de nettoyage de la réponse de Gemini. L'IA a tendance à entourer son JSON de balises markdown (```json ... ```). Utilise la librairie `re` (Regex) pour supprimer ces balises si elles sont présentes, de façon à n'avoir qu'une chaîne de caractères représentant un JSON valide.",
+        "status": "pending"
+    },
+    {
+        "jour": 20,
+        "role": "Architecte Backend",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": ["backend/services/ai_matcher.py", "backend/models.py"],
+        "description": "Finalise la fonction `analyze_cv_vs_job`. Importe le module standard `json` et ton modèle Pydantic `AnalysisResult`. Transforme la chaîne JSON nettoyée en dictionnaire Python avec `json.loads()`. Ensuite, instancie l'objet `AnalysisResult(**dictionnaire)` et retourne cet objet.",
+        "status": "pending"
+    },
+    {
+        "jour": 21,
+        "role": "Ingénieur Fiabilité (SRE)",
+        "fichier_cible": "backend/services/ai_matcher.py",
+        "fichiers_contexte": ["backend/services/ai_matcher.py"],
+        "description": "Ajoute un bloc `try/except` autour de l'appel à l'API Gemini et du parsing JSON. Si l'API renvoie une erreur (timeout, indisponibilité) ou si le JSON est invalide (`json.JSONDecodeError`), lève une exception personnalisée ou retourne un `AnalysisResult` par défaut avec un score de 0 et un message d'erreur dans les points à améliorer.",
+        "status": "pending"
+    },
+    {
+        "jour": 22,
+        "role": "Développeur API (FastAPI)",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": ["backend/routes/api.py", "backend/services/ai_matcher.py"],
+        "description": "Vérifie la route '/analyze'. Assure-toi qu'elle récupère bien l'objet `AnalysisResult` de la fonction `analyze_cv_vs_job` et qu'elle le retourne directement (FastAPI convertira automatiquement ce modèle Pydantic en réponse JSON pour le client Frontend).",
+        "status": "pending"
+    },
+    {
+        "jour": 23,
+        "role": "Ingénieur DevOps",
+        "fichier_cible": "backend/main.py",
+        "fichiers_contexte": ["backend/main.py"],
+        "description": "Mets en place un système de logs basique. Importe le module `logging` natif de Python et configure-le au niveau INFO au début du fichier. Ajoute un log global indiquant le démarrage de l'application 'ATS API Started'. Cela nous aidera à monitorer le backend plus tard.",
+        "status": "pending"
+    },
+    {
+        "jour": 24,
+        "role": "Ingénieur Sécurité",
+        "fichier_cible": "backend/utils/validators.py",
+        "fichiers_contexte": ["backend/utils/validators.py"],
+        "description": "Ajoute une limite de taille pour l'upload. Mets à jour la fonction `validate_pdf_file(file: UploadFile)`. Utilise `file.file.seek(0, 2)` pour aller à la fin du fichier et lire sa taille, puis `file.file.seek(0)` pour remettre le curseur au début. Si la taille dépasse 5 Mo (5 * 1024 * 1024 octets), lève une HTTPException avec le statut 413 (Payload Too Large).",
+        "status": "pending"
+    },
+    {
+        "jour": 25,
+        "role": "Ingénieur IA (Prompt Engineer)",
+        "fichier_cible": "backend/utils/prompts.py",
+        "fichiers_contexte": ["backend/utils/prompts.py"],
+        "description": "Ajoute un 'Guardrail' (Garde-fou) au `SYSTEM_PROMPT_MATCHING`. Modifie le texte pour ajouter une instruction stricte : 'Vérifie d'abord si le texte fourni ressemble à un CV (présence d'expériences, compétences, formation). Si le texte est un menu de restaurant, un poème ou n'a rien à voir avec un profil professionnel, retourne immédiatement un score de 0 et mets dans points_amelioration : [Document non reconnu comme un CV]'.",
+        "status": "pending"
+    },
+    {
+        "jour": 26,
+        "role": "Ingénieur Qualité (QA)",
+        "fichier_cible": "requirements.txt",
+        "fichiers_contexte": ["requirements.txt"],
+        "description": "Ajoute les librairies de test. Ajoute `pytest` et `httpx` à la fin du fichier requirements.txt. Ces librairies nous permettront de simuler des requêtes HTTP vers notre API FastAPI sans avoir besoin de lancer le serveur.",
+        "status": "pending"
+    },
+    {
+        "jour": 27,
+        "role": "Ingénieur Qualité (QA)",
+        "fichier_cible": "backend/tests/test_api.py",
+        "fichiers_contexte": ["backend/main.py"],
+        "description": "Crée le premier test automatisé. Importe `TestClient` depuis `fastapi.testclient` et ton application `app` depuis `backend.main`. Initialise `client = TestClient(app)`. Écris une fonction `test_root()` qui fait un `client.get('/')`. Fais un `assert` pour vérifier que le `status_code` est 200 et que la réponse contient bien ton message de bienvenue.",
+        "status": "pending"
+    },
+    {
+        "jour": 28,
+        "role": "Ingénieur Qualité (Avancé)",
+        "fichier_cible": "backend/tests/test_api.py",
+        "fichiers_contexte": ["backend/tests/test_api.py", "backend/routes/api.py"],
+        "description": "Écris un test pour la route d'analyse. Importe `patch` depuis `unittest.mock`. Crée la fonction `test_analyze_route()`. Utilise `@patch` pour 'mocker' (simuler) la fonction `extract_text_from_pdf` et `analyze_cv_vs_job` afin de ne pas appeler la vraie API Gemini pendant les tests. Envoie un faux fichier PDF et une description texte via `client.post('/api/v1/analyze')`. Vérifie que le code de retour HTTP est bien 200.",
+        "status": "pending"
+    },
+    {
+        "jour": 29,
+        "role": "Ingénieur Data",
+        "fichier_cible": "requirements.txt",
+        "fichiers_contexte": ["requirements.txt"],
+        "description": "Ajoute les dépendances pour la base de données. Ajoute 'sqlalchemy' à la fin du fichier requirements.txt. C'est l'ORM (Object-Relational Mapping) qui nous permettra de parler à la base de données en utilisant du code Python.",
+        "status": "pending"
+    },
+    {
+        "jour": 30,
+        "role": "Architecte Base de Données",
+        "fichier_cible": "backend/database.py",
+        "fichiers_contexte": [],
+        "description": "Crée le fichier de connexion à la base. Importe `create_engine` et `sessionmaker` de `sqlalchemy`, ainsi que `declarative_base` de `sqlalchemy.ext.declarative` (ou `sqlalchemy.orm`). Configure un moteur SQLite avec l'URL 'sqlite:///./ats_database.db' (n'oublie pas le `connect_args={'check_same_thread': False}` requis pour SQLite dans FastAPI). Crée `SessionLocal` et la classe `Base`.",
+        "status": "pending"
+    },
+    {
+        "jour": 31,
+        "role": "Développeur Backend (Modélisation)",
+        "fichier_cible": "backend/db_models.py",
+        "fichiers_contexte": ["backend/database.py"],
+        "description": "Crée le schéma de la table. Importe `Base` depuis `backend.database`. Crée une classe `AnalysisRecord(Base)` avec `__tablename__ = 'analyses'`. Ajoute les colonnes : `id` (Integer, primary_key), `job_title` (String), `candidate_name` (String, nullable=True), `score` (Integer), `points_forts` (String, on stockera la liste en JSON textuel), et `created_at` (DateTime avec un default à datetime.utcnow).",
+        "status": "pending"
+    },
+    {
+        "jour": 32,
+        "role": "Développeur API (FastAPI)",
+        "fichier_cible": "backend/main.py",
+        "fichiers_contexte": ["backend/main.py", "backend/database.py", "backend/db_models.py"],
+        "description": "Initialise la base de données au démarrage de l'application. Importe `engine` depuis `backend.database` et `Base` depuis `backend.db_models`. Juste avant la création de l'application FastAPI, ajoute `Base.metadata.create_all(bind=engine)`. Cela créera automatiquement le fichier ats_database.db et la table 'analyses' au premier lancement.",
+        "status": "pending"
+    },
+    {
+        "jour": 33,
+        "role": "Développeur Backend Python",
+        "fichier_cible": "backend/database.py",
+        "fichiers_contexte": ["backend/database.py"],
+        "description": "Ajoute la fonction utilitaire (dépendance FastAPI) pour obtenir une session de base de données. Crée une fonction `get_db()` : ouvre une session locale (`db = SessionLocal()`), utilise `yield db`, et dans un bloc `finally`, ferme la session (`db.close()`).",
+        "status": "pending"
+    },
+    {
+        "jour": 34,
+        "role": "Architecte Backend",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": ["backend/routes/api.py", "backend/database.py", "backend/db_models.py"],
+        "description": "Modifie la route POST '/analyze' pour sauvegarder l'analyse. Ajoute `db: Session = Depends(get_db)` dans les paramètres de la route (importe `Depends` de fastapi et `Session` de sqlalchemy.orm). Après avoir reçu le résultat de Gemini, instancie un `AnalysisRecord`, ajoute-le à la DB (`db.add()`), fais un `db.commit()` et un `db.refresh()`. N'oublie pas de convertir les listes de points forts en chaînes de caractères (avec `json.dumps`) pour SQLite.",
+        "status": "pending"
+    },
+    {
+        "jour": 35,
+        "role": "Développeur API (FastAPI)",
+        "fichier_cible": "backend/routes/api.py",
+        "fichiers_contexte": ["backend/routes/api.py", "backend/db_models.py"],
+        "description": "Crée une nouvelle route GET '/history'. Cette route doit accepter un paramètre de pagination (ex: limit=10), utiliser la session de base de données (`Depends(get_db)`) pour requêter la table `AnalysisRecord` (`db.query(AnalysisRecord).order_by(AnalysisRecord.created_at.desc()).limit(limit).all()`), et retourner la liste des analyses passées.",
+        "status": "pending"
+    },
+    {
+        "jour": 36,
+        "role": "Intégrateur Web (Frontend)",
+        "fichier_cible": "frontend/index.html",
+        "fichiers_contexte": [],
+        "description": "Crée le fichier HTML de base. Ajoute le squelette HTML5. Dans le <head>, inclus le lien CDN de Tailwind CSS (<script src=\"https://cdn.tailwindcss.com\"></script>) et un lien vers FontAwesome pour les icônes. Ajoute un titre (h1) 'ATS AI Matcher' centré, avec un sous-titre expliquant le but de l'application.",
+        "status": "pending"
+    },
+    {
+        "jour": 37,
+        "role": "Designer UI/UX",
+        "fichier_cible": "frontend/index.html",
+        "fichiers_contexte": ["frontend/index.html"],
+        "description": "Modifie le fichier HTML pour créer la structure du formulaire. Crée deux grandes zones (avec des divs Tailwind, par exemple un grid ou flexbox) : une zone à gauche pour uploader le CV (un input type 'file' acceptant '.pdf'), et une zone à droite avec un grand 'textarea' pour coller la description de l'offre d'emploi. Ajoute un grand bouton 'Analyser la candidature'.",
+        "status": "pending"
+    },
+    {
+        "jour": 38,
+        "role": "Développeur JavaScript",
+        "fichier_cible": "frontend/assets/js/main.js",
+        "fichiers_contexte": ["frontend/index.html"],
+        "description": "Crée le fichier JavaScript principal. Récupère les éléments du DOM (le bouton d'envoi, l'input file, et le textarea). Ajoute un 'event listener' sur le bouton d'envoi. Pour l'instant, fais juste un `console.log` pour vérifier que le fichier et le texte ont bien été sélectionnés par l'utilisateur quand il clique.",
+        "status": "pending"
+    },
+    {
+        "jour": 39,
+        "role": "Intégrateur Web (Frontend)",
+        "fichier_cible": "frontend/index.html",
+        "fichiers_contexte": ["frontend/index.html", "frontend/assets/js/main.js"],
+        "description": "N'oublie pas de lier le fichier JS. À la fin de la balise <body> de index.html, ajoute la balise <script src=\"assets/js/main.js\"></script>. Ajoute aussi un petit élément caché (par exemple un spinner de chargement ou un texte 'Analyse en cours...') qui servira plus tard pendant l'appel à l'API.",
+        "status": "pending"
+    },
+    {
+        "jour": 40,
+        "role": "Développeur Frontend (API Logic)",
+        "fichier_cible": "frontend/assets/js/main.js",
+        "fichiers_contexte": ["frontend/assets/js/main.js"],
+        "description": "Implémente la logique d'appel API. Dans l'event listener, utilise l'objet `FormData` pour y ajouter le fichier PDF (`cv`) et la description (`job_description`). Fais une requête `fetch` en POST vers `http://127.0.0.1:8000/api/v1/analyze` avec ce `FormData`. Affiche le JSON de réponse (le score de Gemini) dans un `console.log` pour valider la communication.",
+        "status": "pending"
+    },
+    {
+        "jour": 41,
+        "role": "Designer UI/UX",
+        "fichier_cible": "frontend/index.html",
+        "fichiers_contexte": ["frontend/index.html"],
+        "description": "Crée la zone d'affichage des résultats dans le HTML (cachée par défaut). Elle doit contenir un gros élément visuel pour le Score (ex: un grand cercle), une liste <ul> pour les 'Points Forts' (avec des icônes vertes), et une liste <ul> pour les 'Points d'amélioration' (avec des icônes oranges). Utilise les classes Tailwind pour le style.",
+        "status": "pending"
+    },
+    {
+        "jour": 42,
+        "role": "Développeur JavaScript",
+        "fichier_cible": "frontend/assets/js/main.js",
+        "fichiers_contexte": ["frontend/assets/js/main.js", "frontend/index.html"],
+        "description": "Lie la réponse de l'API à l'interface visuelle. Après le `fetch` réussi, masque la zone de chargement, affiche la zone de résultat, et utilise le DOM (`document.getElementById().innerText` ou `.innerHTML`) pour injecter le score reçu, et boucler sur les tableaux `points_forts` et `points_amelioration` pour générer les balises <li> dynamiquement.",
+        "status": "pending"
+    },
+    {
+        "jour": 43,
+        "role": "Développeur Frontend (Gestion d'erreurs)",
+        "fichier_cible": "frontend/assets/js/main.js",
+        "fichiers_contexte": ["frontend/assets/js/main.js"],
+        "description": "Ajoute la gestion des erreurs côté Frontend. Si la requête `fetch` échoue (ex: erreur 500, ou erreur réseau), ou si l'API renvoie une erreur (PDF trop lourd, etc.), attrape cette erreur dans un `.catch()` ou en lisant `response.ok`. Affiche une belle alerte rouge à l'utilisateur (crée une div dynamique avec Tailwind) expliquant le problème.",
+        "status": "pending"
+    },
+    {
+        "jour": 44,
+        "role": "Intégrateur Web (Frontend)",
+        "fichier_cible": "frontend/index.html",
+        "fichiers_contexte": ["frontend/index.html"],
+        "description": "Ajoute une zone de 'Drag and Drop' (Glisser-Déposer) visuelle. Modifie l'input file standard pour le rendre invisible, et enveloppe-le dans une grande zone en pointillé. Ajoute un petit script JS ou des classes CSS pour que la zone change de couleur quand l'utilisateur fait glisser un fichier PDF au-dessus.",
+        "status": "pending"
+    },
+    {
+        "jour": 45,
+        "role": "Développeur JavaScript",
+        "fichier_cible": "frontend/assets/js/main.js",
+        "fichiers_contexte": ["frontend/assets/js/main.js", "frontend/index.html"],
+        "description": "Rends la zone de 'Drag and Drop' fonctionnelle. Ajoute les event listeners 'dragover', 'dragleave', et 'drop' sur la zone en pointillé. Lorsqu'un fichier est 'dropped', récupère-le via `event.dataTransfer.files[0]`, place-le dans l'input file caché, et mets à jour le texte visuel pour afficher le nom du fichier sélectionné (ex: 'CV_Dupont.pdf prêt').",
+        "status": "pending"
+    },
+    {
+        "jour": 46,
+        "role": "Ingénieur DevOps",
+        "fichier_cible": "backend/Dockerfile",
+        "fichiers_contexte": ["requirements.txt"],
+        "description": "Crée le Dockerfile pour le backend. Utilise l'image de base 'python:3.10-slim'. Définis le répertoire de travail sur '/app'. Copie le fichier requirements.txt et lance 'pip install --no-cache-dir -r requirements.txt'. Ensuite, copie tout le reste du code backend dans '/app/backend'. Expose le port 8000. La commande de lancement CMD doit être : ['uvicorn', 'backend.main:app', '--host', '0.0.0.0', '--port', '8000'].",
+        "status": "pending"
+    },
+    {
+        "jour": 47,
+        "role": "Ingénieur DevOps",
+        "fichier_cible": "frontend/Dockerfile",
+        "fichiers_contexte": [],
+        "description": "Crée le Dockerfile pour le frontend. Pour un site statique (HTML/JS/CSS), le standard absolu est d'utiliser Nginx. Utilise l'image de base 'nginx:alpine'. Copie simplement tout le contenu du dossier frontend (index.html, assets, etc.) vers le dossier de Nginx : 'COPY . /usr/share/nginx/html'. Expose le port 80.",
+        "status": "pending"
+    },
+    {
+        "jour": 48,
+        "role": "Architecte Cloud / DevOps",
+        "fichier_cible": "docker-compose.yml",
+        "fichiers_contexte": ["backend/Dockerfile", "frontend/Dockerfile"],
+        "description": "Crée le fichier docker-compose.yml à la racine du projet. Définis deux services. Service 'backend' : construit depuis le dossier './backend', mappe le port 8000:8000, et injecte la variable d'environnement 'GEMINI_API_KEY'. Service 'frontend' : construit depuis le dossier './frontend', mappe le port 8080:80 (pour que le site soit accessible sur localhost:8080), et ajoute un 'depends_on: - backend' pour s'assurer que l'API démarre en premier.",
+        "status": "pending"
+    },
+    {
+        "jour": 49,
+        "role": "Lead Developer",
+        "fichier_cible": "Makefile",
+        "fichiers_contexte": ["docker-compose.yml"],
+        "description": "Crée un fichier Makefile à la racine (c'est très apprécié en entreprise pour l'automatisation). Ajoute une commande 'up' qui exécute 'docker-compose up --build -d', une commande 'down' qui exécute 'docker-compose down', et une commande 'logs' pour faire un 'docker-compose logs -f'.",
+        "status": "pending"
+    },
+    {
+        "jour": 50,
+        "role": "Tech Lead / Developer Advocate",
+        "fichier_cible": "README.md",
+        "fichiers_contexte": ["docker-compose.yml", "backend/main.py", "frontend/index.html"],
+        "description": "Rédige le README.md final du projet pour GitHub. Utilise du Markdown propre. Ajoute un grand titre '# 🚀 ATS AI Matcher'. Ajoute des sections : 'Description' (un outil complet d'analyse de CV propulsé par Gemini), 'Stack Technique' (FastAPI, SQLite, Vanilla JS, Docker, Gemini AI), 'Prérequis' (Docker & Clé API Google), et 'Comment lancer le projet' (explique qu'il suffit de créer un fichier .env avec la clé API et de lancer 'make up'). Finis par une conclusion enthousiaste.",
+        "status": "pending"
+    }
+]
