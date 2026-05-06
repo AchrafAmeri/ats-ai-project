@@ -9,7 +9,7 @@ if not API_KEY:
 # On initialise le client
 client = genai.Client(api_key=API_KEY)
 
-print("Recherche des modèles disponibles...\n")
+print("Recherche des modèles gemini disponibles...\n")
 
 # On boucle sur la liste des modèles fournis par l'API
 for model in client.models.list():
