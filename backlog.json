@@ -15,7 +15,7 @@
             "backend/main.py"
         ],
         "description": "Crée les modèles Pydantic pour l'application. Importe BaseModel de pydantic. Crée un modèle `JobOffer` (avec un titre en str, et une description en str) et un modèle `AnalysisResult` (avec score en int, points_forts en list[str], et points_amelioration en list[str]).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 3,
