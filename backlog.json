@@ -23,7 +23,7 @@
         "fichier_cible": "backend/config.py",
         "fichiers_contexte": [],
         "description": "Crée un gestionnaire de configuration. Utilise `os` ou `pydantic_settings`. L'application doit pouvoir lire une variable d'environnement 'GEMINI_API_KEY'. Si elle n'est pas présente, la configuration doit renvoyer une erreur explicite ou une valeur par défaut vide.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 4,
