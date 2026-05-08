@@ -31,7 +31,7 @@
         "fichier_cible": "backend/services/pdf_extractor.py",
         "fichiers_contexte": [],
         "description": "Crée un service pour extraire le texte d'un document. Pour l'instant, crée une fonction asynchrone `extract_text_from_pdf(file_bytes: bytes) -> str`. Puisqu'on n'a pas encore installé PyMuPDF, simule le comportement en retournant un faux texte générique du style 'Texte extrait du CV...'.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 5,
