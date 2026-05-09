@@ -42,7 +42,7 @@
             "backend/config.py"
         ],
         "description": "Crée la fonction asynchrone `analyze_cv_vs_job(cv_text: str, job_description: str) -> AnalysisResult`. Pour ce jour, ne fais pas le vrai appel à l'API Gemini. Retourne simplement une instance mockée de `AnalysisResult` avec un score de 75 et quelques points forts bidons. C'est pour préparer la structure.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 6,
