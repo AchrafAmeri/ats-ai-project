@@ -54,7 +54,7 @@
             "backend/services/ai_matcher.py"
         ],
         "description": "Crée un APIRouter FastAPI. Définis une route POST '/analyze' qui prend en paramètre un `UploadFile` (le CV) et un paramètre de formulaire (Form) pour la `job_description`. La route doit lire le fichier, appeler `extract_text_from_pdf`, puis `analyze_cv_vs_job`, et retourner le résultat.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 7,
