@@ -64,7 +64,7 @@
             "backend/routes/api.py"
         ],
         "description": "Mets à jour le fichier main.py existant. Importe le router défini dans `backend/routes/api.py` et inclus-le dans l'application principale (app.include_router) avec le préfixe '/api/v1'. Conserve la configuration CORS et la route racine existantes.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 8,
