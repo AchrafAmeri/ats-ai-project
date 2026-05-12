@@ -72,7 +72,7 @@
         "fichier_cible": "requirements.txt",
         "fichiers_contexte": [],
         "description": "Crée un fichier requirements.txt à la racine du projet contenant les dépendances essentielles du backend : fastapi, uvicorn, pydantic, pydantic-settings, python-multipart (pour gérer l'upload de fichiers dans l'API) et pymupdf (le package s'appelle 'pymupdf', il sert à extraire le texte des PDF).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 9,
