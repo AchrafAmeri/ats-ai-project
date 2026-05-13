@@ -82,7 +82,7 @@
             "backend/services/pdf_extractor.py"
         ],
         "description": "Met à jour la fonction `extract_text_from_pdf` pour utiliser une vraie implémentation. Importe `fitz` (PyMuPDF). La fonction reçoit des `file_bytes`. Utilise `doc = fitz.Document(stream=file_bytes, filetype='pdf')`, itère sur toutes les pages pour extraire le texte avec `page.get_text()`, concatène le tout et retourne la chaîne de caractères complète.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 10,

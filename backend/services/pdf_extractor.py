@@ -1,5 +1,8 @@
-import asyncio
+import fitz
 
 async def extract_text_from_pdf(file_bytes: bytes) -> str:
-    await asyncio.sleep(0.1)
-    return "Texte extrait du CV..."
+    doc = fitz.Document(stream=file_bytes, filetype='pdf')
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    return text
