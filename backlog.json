@@ -90,7 +90,7 @@
         "fichier_cible": "backend/utils/text_cleaner.py",
         "fichiers_contexte": [],
         "description": "Crée un fichier utilitaire avec une fonction `clean_extracted_text(text: str) -> str`. Utilise le module `re` (expressions régulières) pour nettoyer le texte du CV : remplace les sauts de ligne multiples par un seul, supprime les espaces excessifs, et retire les caractères non imprimables qui pourraient perturber l'IA. Retourne le texte propre.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 11,
