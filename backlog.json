@@ -101,7 +101,7 @@
             "backend/utils/text_cleaner.py"
         ],
         "description": "Importe la fonction `clean_extracted_text` depuis `backend.utils.text_cleaner`. Applique ce nettoyeur sur la chaîne de caractères globale extraite du PDF juste avant que la fonction `extract_text_from_pdf` ne retourne son résultat final.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 12,
