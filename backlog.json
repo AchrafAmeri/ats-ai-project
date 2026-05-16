@@ -109,7 +109,7 @@
         "fichier_cible": "backend/utils/validators.py",
         "fichiers_contexte": [],
         "description": "Crée un système de validation de fichiers. Écris une fonction `validate_pdf_file(file: UploadFile)`. Elle doit vérifier que le `content_type` du fichier est bien 'application/pdf'. Si ce n'est pas le cas, elle doit lever une `HTTPException` (status 400) de FastAPI avec un message expliquant que seul le format PDF est accepté.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 13,
