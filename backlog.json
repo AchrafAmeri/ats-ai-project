@@ -120,7 +120,7 @@
             "backend/utils/validators.py"
         ],
         "description": "Sécurise la route d'upload. Importe `validate_pdf_file`. Dans la route POST '/analyze', appelle cette fonction de validation sur le fichier uploadé tout au début de la route, avant même d'essayer de lire les bytes du fichier. Si la validation passe, le code continue normalement.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 14,

@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Form
 from backend.services.pdf_extractor import extract_text_from_pdf
 from backend.services.ai_matcher import analyze_cv_vs_job
+from backend.utils.validators import validate_pdf_file
 from backend.models import AnalysisResult
 
 router = APIRouter()
@@ -10,6 +11,7 @@ async def analyze_cv(
     file: UploadFile = File(...),
     job_description: str = Form(...)
 ):
+    validate_pdf_file(file)
     file_bytes = await file.read()
     cv_text = await extract_text_from_pdf(file_bytes)
     result = await analyze_cv_vs_job(cv_text, job_description)
