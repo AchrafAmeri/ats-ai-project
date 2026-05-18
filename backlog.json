@@ -130,7 +130,7 @@
             "backend/routes/api.py"
         ],
         "description": "Ajoute une gestion d'erreurs robuste (try/except) dans la route '/analyze' lors de l'appel à `extract_text_from_pdf`. Si l'extraction échoue (ex: PDF corrompu ou protégé par mot de passe), attrape l'exception et lève une `HTTPException` 500. Ensuite, vérifie si le texte extrait est vide : si oui, lève une `HTTPException` 400 (PDF illisible ou scanné sans OCR).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 15,

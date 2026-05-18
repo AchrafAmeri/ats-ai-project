@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException, status
 from backend.services.pdf_extractor import extract_text_from_pdf
 from backend.services.ai_matcher import analyze_cv_vs_job
 from backend.utils.validators import validate_pdf_file
