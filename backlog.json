@@ -140,7 +140,7 @@
             "requirements.txt"
         ],
         "description": "Ajoute le nouveau SDK officiel de Google pour l'IA à la liste des dépendances. Ajoute la ligne 'google-genai' à la fin du fichier requirements.txt.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 16,
