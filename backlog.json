@@ -148,7 +148,7 @@
         "fichier_cible": "backend/utils/prompts.py",
         "fichiers_contexte": [],
         "description": "Crée un fichier pour stocker les instructions de l'IA. Définis une constante `SYSTEM_PROMPT_MATCHING`. Ce prompt doit dire à l'IA d'agir comme un recruteur expert. Il doit lui ordonner d'analyser un CV et une Offre, et d'absolument retourner sa réponse au format JSON strict avec les clés exactes : 'score' (entier sur 100), 'points_forts' (liste de strings) et 'points_amelioration' (liste de strings).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 17,
