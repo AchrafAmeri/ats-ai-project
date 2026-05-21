@@ -159,7 +159,7 @@
             "backend/config.py"
         ],
         "description": "Modifie le fichier pour initialiser le client Gemini. Importe `os` et la librairie `genai` depuis `google`. Initialise le `client = genai.Client(api_key=...)` en utilisant la clé secrète provenant de ta configuration ou des variables d'environnement.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 18,

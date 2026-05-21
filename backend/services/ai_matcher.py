@@ -1,4 +1,10 @@
+import os
+from google import genai
+from backend.config import settings
 from backend.models import AnalysisResult
+
+# Initialisation du client Gemini
+client = genai.Client(api_key=settings.GEMINI_API_KEY.get_secret_value())
 
 async def analyze_cv_vs_job(cv_text: str, job_description: str) -> AnalysisResult:
     """
