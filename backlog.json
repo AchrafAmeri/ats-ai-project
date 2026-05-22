@@ -170,7 +170,7 @@
             "backend/utils/prompts.py"
         ],
         "description": "Remplace la fonction `analyze_cv_vs_job` existante par le vrai appel à l'API. Importe `SYSTEM_PROMPT_MATCHING`. Formate le message final en combinant le prompt système, le texte du CV et la description de l'offre. Utilise `client.models.generate_content` avec le modèle 'gemini-2.5-flash'. Retourne le texte brut de la réponse pour le moment.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 19,
