@@ -1,4 +1,5 @@
 import os
+import re
 from google import genai
 from backend.config import settings
 from backend.models import AnalysisResult
@@ -21,4 +22,8 @@ async def analyze_cv_vs_job(cv_text: str, job_description: str) -> str:
         }
     )
 
-    return response.text
+    text = response.text
+    # Supprime les balises markdown (ex: ```json ... ```) pour ne garder que le contenu JSON
+    cleaned_json = re.sub(r'^```json\s*|\s*```$', '', text, flags=re.MULTILINE | re.DOTALL).strip()
+
+    return cleaned_json

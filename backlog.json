@@ -180,7 +180,7 @@
             "backend/services/ai_matcher.py"
         ],
         "description": "Ajoute une logique de nettoyage de la réponse de Gemini. L'IA a tendance à entourer son JSON de balises markdown (```json ... ```). Utilise la librairie `re` (Regex) pour supprimer ces balises si elles sont présentes, de façon à n'avoir qu'une chaîne de caractères représentant un JSON valide.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 20,
