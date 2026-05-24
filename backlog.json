@@ -191,7 +191,7 @@
             "backend/models.py"
         ],
         "description": "Finalise la fonction `analyze_cv_vs_job`. Importe le module standard `json` et ton modèle Pydantic `AnalysisResult`. Transforme la chaîne JSON nettoyée en dictionnaire Python avec `json.loads()`. Ensuite, instancie l'objet `AnalysisResult(**dictionnaire)` et retourne cet objet.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 21,

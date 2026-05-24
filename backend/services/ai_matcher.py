@@ -1,5 +1,6 @@
 import os
 import re
+import json
 from google import genai
 from backend.config import settings
 from backend.models import AnalysisResult
@@ -8,7 +9,7 @@ from backend.utils.prompts import SYSTEM_PROMPT_MATCHING
 # Initialisation du client Gemini
 client = genai.Client(api_key=settings.GEMINI_API_KEY.get_secret_value())
 
-async def analyze_cv_vs_job(cv_text: str, job_description: str) -> str:
+async def analyze_cv_vs_job(cv_text: str, job_description: str) -> AnalysisResult:
     """
     Analyse la correspondance entre un CV et une offre d'emploi via l'API Gemini.
     """
@@ -26,4 +27,5 @@ async def analyze_cv_vs_job(cv_text: str, job_description: str) -> str:
     # Supprime les balises markdown (ex: ```json ... ```) pour ne garder que le contenu JSON
     cleaned_json = re.sub(r'^```json\s*|\s*```$', '', text, flags=re.MULTILINE | re.DOTALL).strip()
 
-    return cleaned_json
+    data = json.loads(cleaned_json)
+    return AnalysisResult(**data)
