@@ -201,7 +201,7 @@
             "backend/services/ai_matcher.py"
         ],
         "description": "Ajoute un bloc `try/except` autour de l'appel à l'API Gemini et du parsing JSON. Si l'API renvoie une erreur (timeout, indisponibilité) ou si le JSON est invalide (`json.JSONDecodeError`), lève une exception personnalisée ou retourne un `AnalysisResult` par défaut avec un score de 0 et un message d'erreur dans les points à améliorer.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 22,
