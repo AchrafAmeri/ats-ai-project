@@ -212,7 +212,7 @@
             "backend/services/ai_matcher.py"
         ],
         "description": "Vérifie la route '/analyze'. Assure-toi qu'elle récupère bien l'objet `AnalysisResult` de la fonction `analyze_cv_vs_job` et qu'elle le retourne directement (FastAPI convertira automatiquement ce modèle Pydantic en réponse JSON pour le client Frontend).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 23,

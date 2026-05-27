@@ -11,8 +11,15 @@ async def analyze_cv(
     file: UploadFile = File(...),
     job_description: str = Form(...)
 ):
+    # Validation du format du fichier (PDF)
     validate_pdf_file(file)
+    
+    # Lecture et extraction du texte
     file_bytes = await file.read()
     cv_text = await extract_text_from_pdf(file_bytes)
+    
+    # Appel du service AI pour l'analyse de correspondance
+    # Retourne directement l'objet AnalysisResult (Pydantic)
     result = await analyze_cv_vs_job(cv_text, job_description)
+    
     return result
