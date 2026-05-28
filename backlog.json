@@ -222,7 +222,7 @@
             "backend/main.py"
         ],
         "description": "Mets en place un système de logs basique. Importe le module `logging` natif de Python et configure-le au niveau INFO au début du fichier. Ajoute un log global indiquant le démarrage de l'application 'ATS API Started'. Cela nous aidera à monitorer le backend plus tard.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 24,
