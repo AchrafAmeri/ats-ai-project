@@ -232,7 +232,7 @@
             "backend/utils/validators.py"
         ],
         "description": "Ajoute une limite de taille pour l'upload. Mets à jour la fonction `validate_pdf_file(file: UploadFile)`. Utilise `file.file.seek(0, 2)` pour aller à la fin du fichier et lire sa taille, puis `file.file.seek(0)` pour remettre le curseur au début. Si la taille dépasse 5 Mo (5 * 1024 * 1024 octets), lève une HTTPException avec le statut 413 (Payload Too Large).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 25,
