@@ -242,7 +242,7 @@
             "backend/utils/prompts.py"
         ],
         "description": "Ajoute un 'Guardrail' (Garde-fou) au `SYSTEM_PROMPT_MATCHING`. Modifie le texte pour ajouter une instruction stricte : 'Vérifie d'abord si le texte fourni ressemble à un CV (présence d'expériences, compétences, formation). Si le texte est un menu de restaurant, un poème ou n'a rien à voir avec un profil professionnel, retourne immédiatement un score de 0 et mets dans points_amelioration : [Document non reconnu comme un CV]'.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 26,
