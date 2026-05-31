@@ -252,7 +252,7 @@
             "requirements.txt"
         ],
         "description": "Ajoute les librairies de test. Ajoute `pytest` et `httpx` à la fin du fichier requirements.txt. Ces librairies nous permettront de simuler des requêtes HTTP vers notre API FastAPI sans avoir besoin de lancer le serveur.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 27,
