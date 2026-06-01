@@ -262,7 +262,7 @@
             "backend/main.py"
         ],
         "description": "Crée le premier test automatisé. Importe `TestClient` depuis `fastapi.testclient` et ton application `app` depuis `backend.main`. Initialise `client = TestClient(app)`. Écris une fonction `test_root()` qui fait un `client.get('/')`. Fais un `assert` pour vérifier que le `status_code` est 200 et que la réponse contient bien ton message de bienvenue.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 28,
