@@ -273,7 +273,7 @@
             "backend/routes/api.py"
         ],
         "description": "Écris un test pour la route d'analyse. Importe `patch` depuis `unittest.mock`. Crée la fonction `test_analyze_route()`. Utilise `@patch` pour 'mocker' (simuler) la fonction `extract_text_from_pdf` et `analyze_cv_vs_job` afin de ne pas appeler la vraie API Gemini pendant les tests. Envoie un faux fichier PDF et une description texte via `client.post('/api/v1/analyze')`. Vérifie que le code de retour HTTP est bien 200.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 29,
