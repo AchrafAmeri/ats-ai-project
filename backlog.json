@@ -283,7 +283,7 @@
             "requirements.txt"
         ],
         "description": "Ajoute les dépendances pour la base de données. Ajoute 'sqlalchemy' à la fin du fichier requirements.txt. C'est l'ORM (Object-Relational Mapping) qui nous permettra de parler à la base de données en utilisant du code Python.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 30,

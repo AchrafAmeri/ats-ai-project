@@ -7,3 +7,4 @@ pymupdf
 google-genai
 pytest
 httpx
+sqlalchemy
