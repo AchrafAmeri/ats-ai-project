@@ -291,7 +291,7 @@
         "fichier_cible": "backend/database.py",
         "fichiers_contexte": [],
         "description": "Crée le fichier de connexion à la base. Importe `create_engine` et `sessionmaker` de `sqlalchemy`, ainsi que `declarative_base` de `sqlalchemy.ext.declarative` (ou `sqlalchemy.orm`). Configure un moteur SQLite avec l'URL 'sqlite:///./ats_database.db' (n'oublie pas le `connect_args={'check_same_thread': False}` requis pour SQLite dans FastAPI). Crée `SessionLocal` et la classe `Base`.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 31,
