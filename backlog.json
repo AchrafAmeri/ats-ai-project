@@ -301,7 +301,7 @@
             "backend/database.py"
         ],
         "description": "Crée le schéma de la table. Importe `Base` depuis `backend.database`. Crée une classe `AnalysisRecord(Base)` avec `__tablename__ = 'analyses'`. Ajoute les colonnes : `id` (Integer, primary_key), `job_title` (String), `candidate_name` (String, nullable=True), `score` (Integer), `points_forts` (String, on stockera la liste en JSON textuel), et `created_at` (DateTime avec un default à datetime.utcnow).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 32,
