@@ -313,7 +313,7 @@
             "backend/db_models.py"
         ],
         "description": "Initialise la base de données au démarrage de l'application. Importe `engine` depuis `backend.database` et `Base` depuis `backend.db_models`. Juste avant la création de l'application FastAPI, ajoute `Base.metadata.create_all(bind=engine)`. Cela créera automatiquement le fichier ats_database.db et la table 'analyses' au premier lancement.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 33,

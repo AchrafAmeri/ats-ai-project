@@ -2,9 +2,14 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.routes.api import router as api_router
+from backend.database import engine
+from backend.db_models import Base
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Initialisation de la base de données
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ATS API")
 
