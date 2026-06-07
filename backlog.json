@@ -323,7 +323,7 @@
             "backend/database.py"
         ],
         "description": "Ajoute la fonction utilitaire (dépendance FastAPI) pour obtenir une session de base de données. Crée une fonction `get_db()` : ouvre une session locale (`db = SessionLocal()`), utilise `yield db`, et dans un bloc `finally`, ferme la session (`db.close()`).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 34,
