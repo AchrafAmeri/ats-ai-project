@@ -1,4 +1,8 @@
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException, status
+import json
+from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from backend.database import get_db
+from backend.db_models import AnalysisRecord
 from backend.services.pdf_extractor import extract_text_from_pdf
 from backend.services.ai_matcher import analyze_cv_vs_job
 from backend.utils.validators import validate_pdf_file
@@ -9,7 +13,8 @@ router = APIRouter()
 @router.post("/analyze", response_model=AnalysisResult)
 async def analyze_cv(
     file: UploadFile = File(...),
-    job_description: str = Form(...)
+    job_description: str = Form(...),
+    db: Session = Depends(get_db)
 ):
     # Validation du format du fichier (PDF)
     validate_pdf_file(file)
@@ -19,7 +24,17 @@ async def analyze_cv(
     cv_text = await extract_text_from_pdf(file_bytes)
     
     # Appel du service AI pour l'analyse de correspondance
-    # Retourne directement l'objet AnalysisResult (Pydantic)
     result = await analyze_cv_vs_job(cv_text, job_description)
+    
+    # Sauvegarde de l'analyse en base de données
+    db_record = AnalysisRecord(
+        job_title=result.job_title,
+        candidate_name=result.candidate_name,
+        score=result.score,
+        points_forts=json.dumps(result.points_forts)
+    )
+    db.add(db_record)
+    db.commit()
+    db.refresh(db_record)
     
     return result

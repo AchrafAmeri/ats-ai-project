@@ -335,7 +335,7 @@
             "backend/db_models.py"
         ],
         "description": "Modifie la route POST '/analyze' pour sauvegarder l'analyse. Ajoute `db: Session = Depends(get_db)` dans les paramètres de la route (importe `Depends` de fastapi et `Session` de sqlalchemy.orm). Après avoir reçu le résultat de Gemini, instancie un `AnalysisRecord`, ajoute-le à la DB (`db.add()`), fais un `db.commit()` et un `db.refresh()`. N'oublie pas de convertir les listes de points forts en chaînes de caractères (avec `json.dumps`) pour SQLite.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 35,
