@@ -346,7 +346,7 @@
             "backend/db_models.py"
         ],
         "description": "Crée une nouvelle route GET '/history'. Cette route doit accepter un paramètre de pagination (ex: limit=10), utiliser la session de base de données (`Depends(get_db)`) pour requêter la table `AnalysisRecord` (`db.query(AnalysisRecord).order_by(AnalysisRecord.created_at.desc()).limit(limit).all()`), et retourner la liste des analyses passées.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 36,

@@ -1,4 +1,5 @@
 import json
+from typing import List
 from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from backend.database import get_db
@@ -38,3 +39,11 @@ async def analyze_cv(
     db.refresh(db_record)
     
     return result
+
+@router.get("/history")
+async def get_history(limit: int = 10, db: Session = Depends(get_db)):
+    """
+    Récupère l'historique des analyses effectuées, triées par date décroissante.
+    """
+    history = db.query(AnalysisRecord).order_by(AnalysisRecord.created_at.desc()).limit(limit).all()
+    return history
