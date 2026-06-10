@@ -354,7 +354,7 @@
         "fichier_cible": "frontend/index.html",
         "fichiers_contexte": [],
         "description": "Crée le fichier HTML de base. Ajoute le squelette HTML5. Dans le <head>, inclus le lien CDN de Tailwind CSS (<script src=\"https://cdn.tailwindcss.com\"></script>) et un lien vers FontAwesome pour les icônes. Ajoute un titre (h1) 'ATS AI Matcher' centré, avec un sous-titre expliquant le but de l'application.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 37,
