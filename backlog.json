@@ -364,7 +364,7 @@
             "frontend/index.html"
         ],
         "description": "Modifie le fichier HTML pour créer la structure du formulaire. Crée deux grandes zones (avec des divs Tailwind, par exemple un grid ou flexbox) : une zone à gauche pour uploader le CV (un input type 'file' acceptant '.pdf'), et une zone à droite avec un grand 'textarea' pour coller la description de l'offre d'emploi. Ajoute un grand bouton 'Analyser la candidature'.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 38,
