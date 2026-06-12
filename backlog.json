@@ -374,7 +374,7 @@
             "frontend/index.html"
         ],
         "description": "Crée le fichier JavaScript principal. Récupère les éléments du DOM (le bouton d'envoi, l'input file, et le textarea). Ajoute un 'event listener' sur le bouton d'envoi. Pour l'instant, fais juste un `console.log` pour vérifier que le fichier et le texte ont bien été sélectionnés par l'utilisateur quand il clique.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 39,
