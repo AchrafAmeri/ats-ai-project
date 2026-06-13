@@ -385,7 +385,7 @@
             "frontend/assets/js/main.js"
         ],
         "description": "N'oublie pas de lier le fichier JS. À la fin de la balise <body> de index.html, ajoute la balise <script src=\"assets/js/main.js\"></script>. Ajoute aussi un petit élément caché (par exemple un spinner de chargement ou un texte 'Analyse en cours...') qui servira plus tard pendant l'appel à l'API.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 40,
