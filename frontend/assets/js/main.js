@@ -12,14 +12,36 @@ cvFileInput.addEventListener('change', (e) => {
     }
 });
 
-uploadForm.addEventListener('submit', (e) => {
+uploadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const file = cvFileInput.files[0];
     const description = jobDescriptionInput.value;
 
+    if (!file) {
+        console.error("Erreur : Aucun fichier sélectionné");
+        return;
+    }
+
     console.log('--- Analyse lancée ---');
-    console.log('Fichier CV sélectionné :', file ? file.name : 'Aucun fichier');
-    console.log('Objet File :', file);
-    console.log('Description du poste :', description);
+
+    const formData = new FormData();
+    formData.append('cv', file);
+    formData.append('job_description', description);
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/analyze', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Résultat de l\'analyse (Gemini) :', result);
+    } catch (error) {
+        console.error('Erreur lors de la communication avec l\'API :', error);
+    }
 });

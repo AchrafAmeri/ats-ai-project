@@ -395,7 +395,7 @@
             "frontend/assets/js/main.js"
         ],
         "description": "Implémente la logique d'appel API. Dans l'event listener, utilise l'objet `FormData` pour y ajouter le fichier PDF (`cv`) et la description (`job_description`). Fais une requête `fetch` en POST vers `http://127.0.0.1:8000/api/v1/analyze` avec ce `FormData`. Affiche le JSON de réponse (le score de Gemini) dans un `console.log` pour valider la communication.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 41,
