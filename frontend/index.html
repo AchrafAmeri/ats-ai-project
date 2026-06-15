@@ -1,38 +1,39 @@
-<<<SEARCH
-                <!-- Bouton d'action principal -->
-                <div class="flex justify-center pt-6">
-                    <button type="submit" class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-black text-white bg-blue-600 rounded-2xl hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-xl hover:shadow-2xl active:scale-95 overflow-hidden">
-                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <span class="relative flex items-center gap-3">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            Analyser la candidature
-                        </span>
-                    </button>
-                </div>
-<<<REPLACE
-                <!-- Bouton d'action principal -->
-                <div class="flex flex-col items-center justify-center pt-6 gap-4">
-                    <button type="submit" class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-black text-white bg-blue-600 rounded-2xl hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 shadow-xl hover:shadow-2xl active:scale-95 overflow-hidden">
-                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <span class="relative flex items-center gap-3">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            Analyser la candidature
-                        </span>
-                    </button>
-
-                    <!-- Indicateur de chargement (caché par défaut) -->
-                    <div id="loading" class="hidden flex items-center gap-3 text-blue-600 font-semibold animate-pulse">
-                        <i class="fa-solid fa-circle-notch fa-spin text-2xl"></i>
-                        <span>Analyse en cours...</span>
-                    </div>
-                </div>
-<<<END
+Voici les modifications pour intégrer la zone d'affichage des résultats dans votre fichier `frontend/index.html`.
 
 <<<SEARCH
     </main>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
 <<<REPLACE
+        <!-- Zone des résultats (cachée par défaut) -->
+        <div id="results" class="hidden mt-12 p-8 bg-white rounded-3xl shadow-xl border border-gray-100">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <!-- Score visuel -->
+                <div class="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 rounded-full border-8 border-blue-600 shadow-inner">
+                    <span id="score-text" class="text-5xl font-black text-gray-800">0</span>
+                    <span class="text-sm text-gray-500 font-bold uppercase tracking-wider">Score</span>
+                </div>
+
+                <div class="flex-grow grid md:grid-cols-2 gap-8">
+                    <!-- Points Forts -->
+                    <div>
+                        <h3 class="text-lg font-bold text-green-600 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> Points Forts
+                        </h3>
+                        <ul id="strengths" class="space-y-2 text-gray-700"></ul>
+                    </div>
+
+                    <!-- Points d'amélioration -->
+                    <div>
+                        <h3 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-exclamation"></i> Axes d'amélioration
+                        </h3>
+                        <ul id="improvements" class="space-y-2 text-gray-700"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="assets/js/main.js"></script>
 </body>

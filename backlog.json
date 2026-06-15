@@ -405,7 +405,7 @@
             "frontend/index.html"
         ],
         "description": "Crée la zone d'affichage des résultats dans le HTML (cachée par défaut). Elle doit contenir un gros élément visuel pour le Score (ex: un grand cercle), une liste <ul> pour les 'Points Forts' (avec des icônes vertes), et une liste <ul> pour les 'Points d'amélioration' (avec des icônes oranges). Utilise les classes Tailwind pour le style.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 42,
