@@ -416,7 +416,7 @@
             "frontend/index.html"
         ],
         "description": "Lie la réponse de l'API à l'interface visuelle. Après le `fetch` réussi, masque la zone de chargement, affiche la zone de résultat, et utilise le DOM (`document.getElementById().innerText` ou `.innerHTML`) pour injecter le score reçu, et boucler sur les tableaux `points_forts` et `points_amelioration` pour générer les balises <li> dynamiquement.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 43,

@@ -4,6 +4,12 @@ const jobDescriptionInput = document.getElementById('jobDescription');
 const fileStatus = document.getElementById('fileStatus');
 const fileNameDisplay = document.getElementById('fileNameDisplay');
 
+// Éléments de la zone de résultats
+const resultsSection = document.getElementById('results');
+const scoreText = document.getElementById('score-text');
+const strengthsList = document.getElementById('strengths');
+const improvementsList = document.getElementById('improvements');
+
 cvFileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -40,6 +46,32 @@ uploadForm.addEventListener('submit', async (e) => {
         }
 
         const result = await response.json();
+
+        // Mise à jour du score
+        scoreText.innerText = result.score;
+
+        // Injection des points forts
+        strengthsList.innerHTML = '';
+        result.points_forts.forEach(point => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start gap-2';
+            li.innerHTML = `<i class="fa-solid fa-check text-green-500 mt-1"></i> <span>${point}</span>`;
+            strengthsList.appendChild(li);
+        });
+
+        // Injection des points d'amélioration
+        improvementsList.innerHTML = '';
+        result.points_amelioration.forEach(point => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start gap-2';
+            li.innerHTML = `<i class="fa-solid fa-arrow-right text-orange-400 mt-1"></i> <span>${point}</span>`;
+            improvementsList.appendChild(li);
+        });
+
+        // Affichage de la zone de résultat
+        resultsSection.classList.remove('hidden');
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+
         console.log('Résultat de l\'analyse (Gemini) :', result);
     } catch (error) {
         console.error('Erreur lors de la communication avec l\'API :', error);
