@@ -426,7 +426,7 @@
             "frontend/assets/js/main.js"
         ],
         "description": "Ajoute la gestion des erreurs côté Frontend. Si la requête `fetch` échoue (ex: erreur 500, ou erreur réseau), ou si l'API renvoie une erreur (PDF trop lourd, etc.), attrape cette erreur dans un `.catch()` ou en lisant `response.ok`. Affiche une belle alerte rouge à l'utilisateur (crée une div dynamique avec Tailwind) expliquant le problème.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 44,

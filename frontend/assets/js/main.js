@@ -10,6 +10,29 @@ const scoreText = document.getElementById('score-text');
 const strengthsList = document.getElementById('strengths');
 const improvementsList = document.getElementById('improvements');
 
+// Fonction pour afficher une alerte d'erreur stylisée
+const displayError = (message) => {
+    // Suppression d'une éventuelle alerte précédente
+    const existingAlert = document.getElementById('error-alert');
+    if (existingAlert) existingAlert.remove();
+
+    const alertDiv = document.createElement('div');
+    alertDiv.id = 'error-alert';
+    alertDiv.className = 'bg-red-50 border-l-4 border-red-500 p-4 mb-6 mt-4 rounded-md shadow-sm animate-pulse';
+    alertDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-exclamation text-red-500 text-xl"></i>
+            <div class="flex-1 text-red-700 text-sm font-medium">${message}</div>
+            <button onclick="this.parentElement.parentElement.remove()" class="text-red-400 hover:text-red-600 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    `;
+    // Insertion après le formulaire
+    uploadForm.insertAdjacentElement('afterend', alertDiv);
+    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+};
+
 cvFileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -24,8 +47,13 @@ uploadForm.addEventListener('submit', async (e) => {
     const file = cvFileInput.files[0];
     const description = jobDescriptionInput.value;
 
+    // Reset de l'interface (erreurs et anciens résultats)
+    const existingAlert = document.getElementById('error-alert');
+    if (existingAlert) existingAlert.remove();
+    resultsSection.classList.add('hidden');
+
     if (!file) {
-        console.error("Erreur : Aucun fichier sélectionné");
+        displayError("Oups ! N'oubliez pas de sélectionner votre CV avant de lancer l'analyse.");
         return;
     }
 
@@ -42,7 +70,14 @@ uploadForm.addEventListener('submit', async (e) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
+            // Tentative de récupération du message d'erreur JSON de l'API
+            let errorMessage = `Erreur serveur (${response.status})`;
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.detail || errorMessage;
+            } catch (e) { /* Pas de JSON dans la réponse d'erreur */ }
+            
+            throw new Error(errorMessage);
         }
 
         const result = await response.json();
@@ -75,5 +110,10 @@ uploadForm.addEventListener('submit', async (e) => {
         console.log('Résultat de l\'analyse (Gemini) :', result);
     } catch (error) {
         console.error('Erreur lors de la communication avec l\'API :', error);
+        
+        let userMessage = "Une erreur réseau est survenue. Vérifiez que le serveur backend est bien lancé.";
+        if (error.message) userMessage = error.message;
+        
+        displayError(userMessage);
     }
 });
