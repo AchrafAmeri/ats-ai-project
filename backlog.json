@@ -436,7 +436,7 @@
             "frontend/index.html"
         ],
         "description": "Ajoute une zone de 'Drag and Drop' (Glisser-Déposer) visuelle. Modifie l'input file standard pour le rendre invisible, et enveloppe-le dans une grande zone en pointillé. Ajoute un petit script JS ou des classes CSS pour que la zone change de couleur quand l'utilisateur fait glisser un fichier PDF au-dessus.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 45,

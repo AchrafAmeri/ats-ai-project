@@ -1,41 +1,41 @@
-Voici les modifications pour intégrer la zone d'affichage des résultats dans votre fichier `frontend/index.html`.
+Voici les modifications pour intégrer la zone de "Drag and Drop" et le style associé dans votre fichier `frontend/index.html`.
 
 <<<SEARCH
-    </main>
-    <script src="assets/js/main.js"></script>
-</body>
-</html>
+    <main>
 <<<REPLACE
-        <!-- Zone des résultats (cachée par défaut) -->
-        <div id="results" class="hidden mt-12 p-8 bg-white rounded-3xl shadow-xl border border-gray-100">
-            <div class="flex flex-col md:flex-row gap-8 items-center">
-                <!-- Score visuel -->
-                <div class="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 rounded-full border-8 border-blue-600 shadow-inner">
-                    <span id="score-text" class="text-5xl font-black text-gray-800">0</span>
-                    <span class="text-sm text-gray-500 font-bold uppercase tracking-wider">Score</span>
-                </div>
-
-                <div class="flex-grow grid md:grid-cols-2 gap-8">
-                    <!-- Points Forts -->
-                    <div>
-                        <h3 class="text-lg font-bold text-green-600 mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check"></i> Points Forts
-                        </h3>
-                        <ul id="strengths" class="space-y-2 text-gray-700"></ul>
-                    </div>
-
-                    <!-- Points d'amélioration -->
-                    <div>
-                        <h3 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-circle-exclamation"></i> Axes d'amélioration
-                        </h3>
-                        <ul id="improvements" class="space-y-2 text-gray-700"></ul>
-                    </div>
-                </div>
-            </div>
+    <main>
+        <!-- Zone de Drag & Drop -->
+        <div id="drop-zone" class="border-4 border-dashed border-gray-300 rounded-3xl p-12 text-center transition-all duration-300 hover:border-blue-500 hover:bg-blue-50 cursor-pointer">
+            <input type="file" id="file-upload" class="hidden" accept=".pdf">
+            <label for="file-upload" class="cursor-pointer">
+                <i class="fa-solid fa-cloud-arrow-up text-5xl text-blue-600 mb-4"></i>
+                <h2 class="text-xl font-bold text-gray-700">Glissez votre CV ici ou cliquez pour parcourir</h2>
+                <p class="text-gray-400 mt-2">Format supporté : PDF uniquement</p>
+            </label>
         </div>
-    </main>
-    <script src="assets/js/main.js"></script>
-</body>
-</html>
+
+        <script>
+            const dropZone = document.getElementById('drop-zone');
+            const fileInput = document.getElementById('file-upload');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('border-blue-600', 'bg-blue-50'));
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('border-blue-600', 'bg-blue-50'));
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                fileInput.files = e.dataTransfer.files;
+                // Déclencher le traitement ici si nécessaire
+            });
+        </script>
 <<<END
