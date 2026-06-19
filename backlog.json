@@ -447,7 +447,7 @@
             "frontend/index.html"
         ],
         "description": "Rends la zone de 'Drag and Drop' fonctionnelle. Ajoute les event listeners 'dragover', 'dragleave', et 'drop' sur la zone en pointillé. Lorsqu'un fichier est 'dropped', récupère-le via `event.dataTransfer.files[0]`, place-le dans l'input file caché, et mets à jour le texte visuel pour afficher le nom du fichier sélectionné (ex: 'CV_Dupont.pdf prêt').",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 46,

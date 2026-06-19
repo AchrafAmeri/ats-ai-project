@@ -1,5 +1,6 @@
 const uploadForm = document.getElementById('uploadForm');
-const cvFileInput = document.getElementById('cvFile');
+const cvFileInput = document.getElementById('file-upload'); // Mis à jour pour correspondre à l'ID du HTML
+const dropZone = document.getElementById('drop-zone');
 const jobDescriptionInput = document.getElementById('jobDescription');
 const fileStatus = document.getElementById('fileStatus');
 const fileNameDisplay = document.getElementById('fileNameDisplay');
@@ -33,11 +34,41 @@ const displayError = (message) => {
     alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
 };
 
-cvFileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
+// Fonction pour mettre à jour l'interface après sélection d'un fichier
+const handleFileUpdate = (file) => {
     if (file) {
-        fileNameDisplay.textContent = file.name;
+        fileNameDisplay.textContent = `${file.name} prêt`;
         fileStatus.classList.remove('hidden');
+    }
+};
+
+// Gestion du changement via clic (input standard)
+cvFileInput.addEventListener('change', (e) => {
+    handleFileUpdate(e.target.files[0]);
+});
+
+// Gestion du Drag & Drop
+['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.add('border-blue-600', 'bg-blue-50');
+    });
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.remove('border-blue-600', 'bg-blue-50');
+    });
+});
+
+dropZone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        cvFileInput.files = files; // Place le fichier dans l'input caché
+        handleFileUpdate(files[0]);
     }
 });
 
