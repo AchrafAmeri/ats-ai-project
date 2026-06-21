@@ -465,7 +465,7 @@
         "fichier_cible": "frontend/Dockerfile",
         "fichiers_contexte": [],
         "description": "Crée le Dockerfile pour le frontend. Pour un site statique (HTML/JS/CSS), le standard absolu est d'utiliser Nginx. Utilise l'image de base 'nginx:alpine'. Copie simplement tout le contenu du dossier frontend (index.html, assets, etc.) vers le dossier de Nginx : 'COPY . /usr/share/nginx/html'. Expose le port 80.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 48,
