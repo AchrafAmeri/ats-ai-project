@@ -476,7 +476,7 @@
             "frontend/Dockerfile"
         ],
         "description": "Crée le fichier docker-compose.yml à la racine du projet. Définis deux services. Service 'backend' : construit depuis le dossier './backend', mappe le port 8000:8000, et injecte la variable d'environnement 'GEMINI_API_KEY'. Service 'frontend' : construit depuis le dossier './frontend', mappe le port 8080:80 (pour que le site soit accessible sur localhost:8080), et ajoute un 'depends_on: - backend' pour s'assurer que l'API démarre en premier.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 49,
