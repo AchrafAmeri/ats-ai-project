@@ -486,7 +486,7 @@
             "docker-compose.yml"
         ],
         "description": "Crée un fichier Makefile à la racine (c'est très apprécié en entreprise pour l'automatisation). Ajoute une commande 'up' qui exécute 'docker-compose up --build -d', une commande 'down' qui exécute 'docker-compose down', et une commande 'logs' pour faire un 'docker-compose logs -f'.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 50,
