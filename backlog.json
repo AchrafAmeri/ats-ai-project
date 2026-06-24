@@ -498,6 +498,6 @@
             "frontend/index.html"
         ],
         "description": "Rédige le README.md final du projet pour GitHub. Utilise du Markdown propre. Ajoute un grand titre '# 🚀 ATS AI Matcher'. Ajoute des sections : 'Description' (un outil complet d'analyse de CV propulsé par Gemini), 'Stack Technique' (FastAPI, SQLite, Vanilla JS, Docker, Gemini AI), 'Prérequis' (Docker & Clé API Google), et 'Comment lancer le projet' (explique qu'il suffit de créer un fichier .env avec la clé API et de lancer 'make up'). Finis par une conclusion enthousiaste.",
-        "status": "pending"
+        "status": "done"
     }
 ]
