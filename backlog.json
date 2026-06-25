@@ -504,15 +504,19 @@
         "jour": 51,
         "role": "Développeur Frontend",
         "fichier_cible": "frontend/dashboard.html",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Crée une nouvelle page HTML pour le tableau de bord (Dashboard). Utilise Tailwind CSS pour structurer une page avec une barre de navigation (Navbar) et une grande zone centrale contenant un tableau (table) vide pour l'instant. Cette page servira à afficher l'historique des analyses.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 52,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/dashboard.js",
-        "fichiers_contexte": ["frontend/dashboard.html"],
+        "fichiers_contexte": [
+            "frontend/dashboard.html"
+        ],
         "description": "Crée le script pour le dashboard. Ajoute un événement `DOMContentLoaded` qui fait un appel `fetch` en GET vers `http://127.0.0.1:8000/api/v1/history`. Récupère le JSON retourné et fais un `console.log` pour vérifier que les données arrivent bien du backend.",
         "status": "pending"
     },
@@ -520,7 +524,10 @@
         "jour": 53,
         "role": "Intégrateur Web (Frontend)",
         "fichier_cible": "frontend/assets/js/dashboard.js",
-        "fichiers_contexte": ["frontend/dashboard.html", "frontend/assets/js/dashboard.js"],
+        "fichiers_contexte": [
+            "frontend/dashboard.html",
+            "frontend/assets/js/dashboard.js"
+        ],
         "description": "Modifie le script du dashboard pour injecter les données dans le tableau HTML. Boucle sur les résultats de l'API et crée des lignes `<tr>` dynamiques contenant la date, le candidat (s'il est extrait), le poste, et le score. Ajoute des badges de couleur Tailwind (vert, orange, rouge) selon le score.",
         "status": "pending"
     },
@@ -528,7 +535,9 @@
         "jour": 54,
         "role": "Ingénieur Sécurité Python",
         "fichier_cible": "requirements.txt",
-        "fichiers_contexte": ["requirements.txt"],
+        "fichiers_contexte": [
+            "requirements.txt"
+        ],
         "description": "Prépare l'ajout de l'authentification. Ajoute les dépendances `passlib[bcrypt]`, `pyjwt` et `python-multipart` à la fin de requirements.txt pour gérer le hachage des mots de passe et la création de tokens JWT.",
         "status": "pending"
     },
@@ -536,7 +545,9 @@
         "jour": 55,
         "role": "Architecte Base de Données",
         "fichier_cible": "backend/db_models.py",
-        "fichiers_contexte": ["backend/db_models.py"],
+        "fichiers_contexte": [
+            "backend/db_models.py"
+        ],
         "description": "Ajoute la table des utilisateurs. Crée une nouvelle classe `User(Base)` avec `__tablename__ = 'users'`. Ajoute `id`, `email` (unique=True), `hashed_password`, et `is_active` (Boolean). Ajoute aussi une clé étrangère `user_id` dans la table `AnalysisRecord` pour lier chaque analyse à un recruteur.",
         "status": "pending"
     },
@@ -544,7 +555,9 @@
         "jour": 56,
         "role": "Développeur Backend Python",
         "fichier_cible": "backend/models.py",
-        "fichiers_contexte": ["backend/models.py"],
+        "fichiers_contexte": [
+            "backend/models.py"
+        ],
         "description": "Crée les schémas Pydantic pour l'authentification. Ajoute `UserCreate` (email, password), `UserResponse` (id, email, sans le mot de passe !), et `Token` (access_token, token_type).",
         "status": "pending"
     },
@@ -552,7 +565,9 @@
         "jour": 57,
         "role": "Ingénieur Sécurité Python",
         "fichier_cible": "backend/utils/security.py",
-        "fichiers_contexte": ["backend/config.py"],
+        "fichiers_contexte": [
+            "backend/config.py"
+        ],
         "description": "Crée le module de sécurité. Implémente la configuration de `CryptContext` avec `passlib` pour hasher et vérifier les mots de passe. Crée une fonction `create_access_token(data: dict, expires_delta: timedelta)` qui utilise `jwt.encode` pour générer un jeton avec une clé secrète (à ajouter dans config.py).",
         "status": "pending"
     },
@@ -560,7 +575,11 @@
         "jour": 58,
         "role": "Développeur API (FastAPI)",
         "fichier_cible": "backend/routes/auth.py",
-        "fichiers_contexte": ["backend/utils/security.py", "backend/database.py", "backend/models.py"],
+        "fichiers_contexte": [
+            "backend/utils/security.py",
+            "backend/database.py",
+            "backend/models.py"
+        ],
         "description": "Crée un nouveau routeur pour l'authentification. Ajoute une route POST `/register` qui prend un `UserCreate`, vérifie si l'email existe, hashe le mot de passe, et sauvegarde l'utilisateur. Ajoute une route POST `/login` utilisant `OAuth2PasswordRequestForm` de FastAPI pour vérifier les identifiants et retourner un JWT.",
         "status": "pending"
     },
@@ -568,7 +587,9 @@
         "jour": 59,
         "role": "Ingénieur Sécurité Python",
         "fichier_cible": "backend/utils/security.py",
-        "fichiers_contexte": ["backend/routes/auth.py"],
+        "fichiers_contexte": [
+            "backend/routes/auth.py"
+        ],
         "description": "Crée une dépendance `get_current_user` dans le module de sécurité. Cette fonction doit utiliser `OAuth2PasswordBearer`, décoder le JWT, extraire l'email, et récupérer l'utilisateur dans la base de données. Si le token est invalide, elle lève une HTTPException 401.",
         "status": "pending"
     },
@@ -576,7 +597,10 @@
         "jour": 60,
         "role": "Architecte Backend",
         "fichier_cible": "backend/main.py",
-        "fichiers_contexte": ["backend/routes/auth.py", "backend/routes/api.py"],
+        "fichiers_contexte": [
+            "backend/routes/auth.py",
+            "backend/routes/api.py"
+        ],
         "description": "Inclus le nouveau routeur d'authentification dans l'application principale avec le préfixe `/auth`. Sécurise la route GET `/history` dans `routes/api.py` en ajoutant `current_user: User = Depends(get_current_user)`. La route d'historique ne doit maintenant renvoyer que les analyses de l'utilisateur connecté.",
         "status": "pending"
     },
@@ -592,7 +616,9 @@
         "jour": 62,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/auth.js",
-        "fichiers_contexte": ["frontend/login.html"],
+        "fichiers_contexte": [
+            "frontend/login.html"
+        ],
         "description": "Crée le script gérant la connexion. Écoute la soumission du formulaire de login, envoie une requête POST (au format `application/x-www-form-urlencoded` requis par OAuth2) vers `/auth/login`. En cas de succès, stocke le `access_token` dans le `localStorage` du navigateur et redirige vers `dashboard.html`.",
         "status": "pending"
     },
@@ -600,7 +626,10 @@
         "jour": 63,
         "role": "Développeur Frontend",
         "fichier_cible": "frontend/assets/js/dashboard.js",
-        "fichiers_contexte": ["frontend/assets/js/dashboard.js", "frontend/assets/js/auth.js"],
+        "fichiers_contexte": [
+            "frontend/assets/js/dashboard.js",
+            "frontend/assets/js/auth.js"
+        ],
         "description": "Modifie les requêtes fetch du dashboard pour inclure le token. Ajoute le header `Authorization: Bearer <token_du_localstorage>`. Si le backend renvoie une erreur 401 (Non autorisé), redirige automatiquement l'utilisateur vers `login.html`.",
         "status": "pending"
     },
@@ -608,7 +637,9 @@
         "jour": 64,
         "role": "Ingénieur IA (Prompt Engineer)",
         "fichier_cible": "backend/utils/prompts.py",
-        "fichiers_contexte": ["backend/utils/prompts.py"],
+        "fichiers_contexte": [
+            "backend/utils/prompts.py"
+        ],
         "description": "Ajoute un deuxième prompt `SYSTEM_PROMPT_EXTRACTION`. Ce prompt ordonnera à l'IA d'extraire spécifiquement le nom, le prénom, l'email et le numéro de téléphone du candidat à partir du texte du CV, et de retourner un JSON structuré avec ces clés.",
         "status": "pending"
     },
@@ -616,7 +647,10 @@
         "jour": 65,
         "role": "Développeur Backend (Spécialiste IA)",
         "fichier_cible": "backend/services/ai_extractor.py",
-        "fichiers_contexte": ["backend/services/ai_matcher.py", "backend/utils/prompts.py"],
+        "fichiers_contexte": [
+            "backend/services/ai_matcher.py",
+            "backend/utils/prompts.py"
+        ],
         "description": "Crée un nouveau service dédié à l'extraction. Définis `extract_candidate_info(cv_text: str)`. Utilise le client Gemini existant, mais avec le `SYSTEM_PROMPT_EXTRACTION`. Retourne un dictionnaire propre contenant les infos de contact du candidat.",
         "status": "pending"
     },
@@ -624,7 +658,10 @@
         "jour": 66,
         "role": "Développeur API",
         "fichier_cible": "backend/routes/api.py",
-        "fichiers_contexte": ["backend/routes/api.py", "backend/services/ai_extractor.py"],
+        "fichiers_contexte": [
+            "backend/routes/api.py",
+            "backend/services/ai_extractor.py"
+        ],
         "description": "Modifie la route `/analyze` pour utiliser `asyncio.gather`. Au lieu d'attendre juste l'analyse de matching, lance simultanément `analyze_cv_vs_job` ET `extract_candidate_info`. Combine les deux résultats avant de sauvegarder en base (cela permet d'enregistrer le vrai nom du candidat au lieu de 'Inconnu') et de renvoyer la réponse.",
         "status": "pending"
     },
@@ -632,7 +669,9 @@
         "jour": 67,
         "role": "Designer UI/UX",
         "fichier_cible": "frontend/index.html",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Améliore l'UI des résultats. Ajoute une section en haut de la zone de résultat qui affiche une petite carte d'identité du candidat (Nom, Email, Téléphone) extraite par la nouvelle fonctionnalité de l'IA. Utilise des icônes FontAwesome pour chaque élément.",
         "status": "pending"
     },
@@ -640,7 +679,9 @@
         "jour": 68,
         "role": "Ingénieur DevOps",
         "fichier_cible": "docker-compose.yml",
-        "fichiers_contexte": ["docker-compose.yml"],
+        "fichiers_contexte": [
+            "docker-compose.yml"
+        ],
         "description": "Ajoute un service Redis à l'infrastructure. Dans le docker-compose, ajoute une image `redis:alpine` exposée sur le port 6379. Redis servira à mettre en cache les requêtes IA et à limiter le nombre de requêtes (Rate Limiting).",
         "status": "pending"
     },
@@ -648,7 +689,9 @@
         "jour": 69,
         "role": "Ingénieur Performance",
         "fichier_cible": "requirements.txt",
-        "fichiers_contexte": ["requirements.txt"],
+        "fichiers_contexte": [
+            "requirements.txt"
+        ],
         "description": "Ajoute `redis` et `fastapi-limiter` au requirements.txt. Ces librairies permettront de communiquer avec Redis pour sécuriser l'API contre les abus et accélérer les réponses redondantes.",
         "status": "pending"
     },
@@ -656,7 +699,9 @@
         "jour": 70,
         "role": "Architecte Backend",
         "fichier_cible": "backend/main.py",
-        "fichiers_contexte": ["backend/main.py"],
+        "fichiers_contexte": [
+            "backend/main.py"
+        ],
         "description": "Initialise le Rate Limiting. Importe `FastAPILimiter` et `aioredis` (ou `redis.asyncio`). Dans un événement `@app.on_event('startup')`, connecte-toi au service Redis du docker-compose et initialise le limiteur. Cela protège notre backend des attaques par déni de service (DDoS).",
         "status": "pending"
     },
@@ -664,7 +709,9 @@
         "jour": 71,
         "role": "Ingénieur Sécurité API",
         "fichier_cible": "backend/routes/api.py",
-        "fichiers_contexte": ["backend/routes/api.py"],
+        "fichiers_contexte": [
+            "backend/routes/api.py"
+        ],
         "description": "Applique le Rate Limiting. Ajoute `Depends(RateLimiter(times=5, seconds=60))` sur la route POST `/analyze`. Un utilisateur ne pourra désormais soumettre que 5 CV par minute, évitant ainsi de faire exploser la facture de l'API Gemini.",
         "status": "pending"
     },
@@ -680,7 +727,10 @@
         "jour": 73,
         "role": "Développeur Backend Python",
         "fichier_cible": "backend/routes/api.py",
-        "fichiers_contexte": ["backend/routes/api.py", "backend/services/cache.py"],
+        "fichiers_contexte": [
+            "backend/routes/api.py",
+            "backend/services/cache.py"
+        ],
         "description": "Intègre la fonction de cache dans la route `/analyze`. Avant même de lancer l'analyse avec Gemini, vérifie si le résultat existe en cache. Si c'est le cas, ajoute une propriété `\"cached\": true` dans la réponse JSON retournée au frontend.",
         "status": "pending"
     },
@@ -688,7 +738,9 @@
         "jour": 74,
         "role": "Intégrateur Web (Frontend)",
         "fichier_cible": "frontend/index.html",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Prépare l'interface pour le traitement par lot (Batch). Modifie l'input file existant en ajoutant l'attribut `multiple`. Mets à jour le texte du Drag & Drop pour dire 'Glissez un ou plusieurs CV'.",
         "status": "pending"
     },
@@ -696,7 +748,9 @@
         "jour": 75,
         "role": "Développeur API (FastAPI)",
         "fichier_cible": "backend/routes/api.py",
-        "fichiers_contexte": ["backend/routes/api.py"],
+        "fichiers_contexte": [
+            "backend/routes/api.py"
+        ],
         "description": "Crée une nouvelle route POST `/analyze-batch`. Cette route accepte une `list[UploadFile]` (plusieurs fichiers) et une description d'offre. Boucle sur les fichiers et stocke les tâches d'extraction/analyse dans une liste de coroutines. Exécute le tout en parallèle avec `asyncio.gather` pour un traitement ultra-rapide.",
         "status": "pending"
     },
@@ -704,7 +758,9 @@
         "jour": 76,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/main.js",
-        "fichiers_contexte": ["frontend/assets/js/main.js"],
+        "fichiers_contexte": [
+            "frontend/assets/js/main.js"
+        ],
         "description": "Met à jour la logique JS pour le multi-fichiers. Si plusieurs fichiers sont sélectionnés, change l'URL du fetch pour cibler `/analyze-batch`. Modifie le `FormData` pour y appendérer chaque fichier dans une boucle (`formData.append('files', file)`).",
         "status": "pending"
     },
@@ -712,7 +768,10 @@
         "jour": 77,
         "role": "Développeur Frontend (Avancé)",
         "fichier_cible": "frontend/assets/js/main.js",
-        "fichiers_contexte": ["frontend/index.html", "frontend/assets/js/main.js"],
+        "fichiers_contexte": [
+            "frontend/index.html",
+            "frontend/assets/js/main.js"
+        ],
         "description": "Adapte l'affichage des résultats pour le mode Batch. Si la réponse est un tableau de résultats (mode batch), génère dynamiquement une interface en accordéon (ou plusieurs cartes) pour afficher le score et les détails de chaque candidat séparément sur la même page.",
         "status": "pending"
     },
@@ -728,7 +787,10 @@
         "jour": 79,
         "role": "Développeur Backend",
         "fichier_cible": "backend/routes/api.py",
-        "fichiers_contexte": ["backend/routes/api.py", "backend/routes/ws.py"],
+        "fichiers_contexte": [
+            "backend/routes/api.py",
+            "backend/routes/ws.py"
+        ],
         "description": "Intègre le WebSocket au processus Batch. Lorsqu'un fichier d'un lot a fini d'être traité, utilise le gestionnaire de connexion WebSocket pour envoyer un message JSON au client (ex: `{'cv': 'dupont.pdf', 'status': 'terminé', 'progress': 50%}`).",
         "status": "pending"
     },
@@ -736,7 +798,9 @@
         "jour": 80,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/main.js",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Ajoute la connexion WebSocket côté frontend. Lors du clic sur 'Analyser', ouvre une connexion `new WebSocket('ws://localhost:8000/ws/progress/123')`. Écoute l'événement `onmessage` et mets à jour visuellement une barre de progression en fonction des messages reçus du serveur.",
         "status": "pending"
     },
@@ -744,7 +808,9 @@
         "jour": 81,
         "role": "Ingénieur Qualité (Tests)",
         "fichier_cible": "backend/tests/test_auth.py",
-        "fichiers_contexte": ["backend/routes/auth.py"],
+        "fichiers_contexte": [
+            "backend/routes/auth.py"
+        ],
         "description": "Écris des tests d'intégration pour l'authentification. Utilise `TestClient`. Crée un utilisateur via `/auth/register`, puis tente de te connecter avec `/auth/login`. Vérifie que la route renvoie bien un `access_token` valide et un code 200.",
         "status": "pending"
     },
@@ -752,7 +818,10 @@
         "jour": 82,
         "role": "Ingénieur Qualité (Tests)",
         "fichier_cible": "backend/tests/test_db.py",
-        "fichiers_contexte": ["backend/database.py", "backend/db_models.py"],
+        "fichiers_contexte": [
+            "backend/database.py",
+            "backend/db_models.py"
+        ],
         "description": "Écris des tests pour la base de données. Utilise une base de données en mémoire (SQLite `:memory:`) spécifique pour les tests. Teste l'insertion d'un `AnalysisRecord` et sa récupération pour t'assurer que les modèles SQLAlchemy sont correctement configurés.",
         "status": "pending"
     },
@@ -760,7 +829,9 @@
         "jour": 83,
         "role": "Lead Developer",
         "fichier_cible": "requirements-dev.txt",
-        "fichiers_contexte": ["requirements.txt"],
+        "fichiers_contexte": [
+            "requirements.txt"
+        ],
         "description": "Sépare les dépendances. Crée un fichier `requirements-dev.txt` qui inclut le fichier de base (`-r requirements.txt`) et ajoute les outils de développement : `pytest`, `httpx`, `black`, `flake8`, `isort`. Cela allège l'image Docker de production.",
         "status": "pending"
     },
@@ -768,7 +839,9 @@
         "jour": 84,
         "role": "Lead Developer",
         "fichier_cible": "Makefile",
-        "fichiers_contexte": ["Makefile"],
+        "fichiers_contexte": [
+            "Makefile"
+        ],
         "description": "Met à jour le Makefile. Ajoute les commandes : `make test` (lance pytest), `make lint` (lance flake8), et `make format` (lance black et isort pour formater le code automatiquement selon les standards PEP 8).",
         "status": "pending"
     },
@@ -784,7 +857,9 @@
         "jour": 86,
         "role": "Intégrateur Web",
         "fichier_cible": "frontend/assets/css/custom.css",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Ajoute des animations personnalisées (CSS). Crée des animations `@keyframes` pour faire apparaître les éléments de résultat en fondu (fade-in) et faire glisser (slide-up) la liste des points forts. Cela donne une sensation de fluidité et un effet 'Wow' à l'application.",
         "status": "pending"
     },
@@ -792,7 +867,9 @@
         "jour": 87,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/utils.js",
-        "fichiers_contexte": ["frontend/assets/js/main.js"],
+        "fichiers_contexte": [
+            "frontend/assets/js/main.js"
+        ],
         "description": "Refactorisation du code Frontend. Déplace la logique de gestion des toasts (notifications visuelles d'erreur ou succès) et les utilitaires de formatage dans un fichier séparé `utils.js` pour alléger le `main.js`. Importe ce fichier dans ton HTML.",
         "status": "pending"
     },
@@ -800,7 +877,9 @@
         "jour": 88,
         "role": "Designer UI/UX",
         "fichier_cible": "frontend/index.html",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Implémente le Mode Sombre (Dark Mode). Ajoute un bouton 'Toggle' en haut à droite. Utilise la classe `dark` de Tailwind CSS en l'appliquant sur la balise `<html>`. Assure-toi que les couleurs de fond et de texte s'inversent correctement et lisiblement.",
         "status": "pending"
     },
@@ -808,7 +887,9 @@
         "jour": 89,
         "role": "Développeur Frontend",
         "fichier_cible": "frontend/assets/js/main.js",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Finalise la logique du Mode Sombre. Gère le clic sur le bouton toggle pour ajouter/retirer la classe 'dark' sur le HTML, et sauvegarde la préférence de l'utilisateur dans le `localStorage` pour que le choix persiste s'il recharge la page.",
         "status": "pending"
     },
@@ -816,7 +897,10 @@
         "jour": 90,
         "role": "Développeur API (Métriques)",
         "fichier_cible": "backend/main.py",
-        "fichiers_contexte": ["requirements.txt", "backend/main.py"],
+        "fichiers_contexte": [
+            "requirements.txt",
+            "backend/main.py"
+        ],
         "description": "Ajoute des métriques d'observabilité. Installe et importe `prometheus-fastapi-instrumentator`. Ajoute le middleware à l'application FastAPI. Cela créera automatiquement une route `/metrics` exposant le nombre de requêtes, les temps de réponse et les codes d'erreur (format Prometheus).",
         "status": "pending"
     },
@@ -824,7 +908,9 @@
         "jour": 91,
         "role": "Ingénieur Données (Statistiques)",
         "fichier_cible": "backend/routes/admin.py",
-        "fichiers_contexte": ["backend/db_models.py"],
+        "fichiers_contexte": [
+            "backend/db_models.py"
+        ],
         "description": "Crée un routeur `/admin` réservé aux super-utilisateurs. Ajoute une route `/admin/stats` qui interroge la base de données pour retourner : le nombre total de CV analysés, le score moyen global, et les titres de postes les plus fréquents (avec des agrégations SQLAlchemy).",
         "status": "pending"
     },
@@ -840,7 +926,9 @@
         "jour": 93,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/assets/js/admin.js",
-        "fichiers_contexte": ["frontend/admin.html"],
+        "fichiers_contexte": [
+            "frontend/admin.html"
+        ],
         "description": "Connecte le dashboard admin au backend. Fais un fetch vers `/admin/stats`. Parse les données reçues et passe-les aux fonctions d'initialisation de Chart.js pour générer des graphiques dynamiques reflétant l'activité réelle de l'ATS.",
         "status": "pending"
     },
@@ -848,7 +936,9 @@
         "jour": 94,
         "role": "Ingénieur DevOps",
         "fichier_cible": "docker-compose.prod.yml",
-        "fichiers_contexte": ["docker-compose.yml"],
+        "fichiers_contexte": [
+            "docker-compose.yml"
+        ],
         "description": "Crée une configuration Docker pour la Production. Crée `docker-compose.prod.yml`. Configure la base de données pour utiliser PostgreSQL au lieu de SQLite (ajoute un service `db`). Mappe les volumes persistants pour protéger les données en cas de redémarrage.",
         "status": "pending"
     },
@@ -856,7 +946,10 @@
         "jour": 95,
         "role": "Architecte Backend",
         "fichier_cible": "backend/database.py",
-        "fichiers_contexte": ["backend/database.py", "docker-compose.prod.yml"],
+        "fichiers_contexte": [
+            "backend/database.py",
+            "docker-compose.prod.yml"
+        ],
         "description": "Prépare le backend pour PostgreSQL. Modifie la gestion de l'URL de la base de données pour qu'elle lise la variable d'environnement `DATABASE_URL`. Si elle existe, utilise l'URL PostgreSQL, sinon utilise la configuration SQLite par défaut pour le développement local.",
         "status": "pending"
     },
@@ -872,7 +965,10 @@
         "jour": 97,
         "role": "Ingénieur DevOps",
         "fichier_cible": "docker-compose.prod.yml",
-        "fichiers_contexte": ["nginx.conf", "frontend/Dockerfile"],
+        "fichiers_contexte": [
+            "nginx.conf",
+            "frontend/Dockerfile"
+        ],
         "description": "Intègre la configuration Nginx dans le Docker de production. Monte le fichier `nginx.conf` dans le conteneur frontend (qui tourne sous Nginx). Assure-toi que les ports réseau sont correctement fermés vers l'extérieur pour FastAPI et la BDD, et que seul Nginx est exposé sur le port 80/443.",
         "status": "pending"
     },
@@ -880,7 +976,9 @@
         "jour": 98,
         "role": "Développeur JavaScript",
         "fichier_cible": "frontend/index.html",
-        "fichiers_contexte": ["frontend/index.html"],
+        "fichiers_contexte": [
+            "frontend/index.html"
+        ],
         "description": "Ajoute la fonctionnalité d'Export PDF. Intègre la librairie `html2pdf.js` via CDN. Ajoute un bouton 'Télécharger le rapport' sur la vue des résultats. Configure le script pour capturer la `div` de résultat et la convertir en PDF téléchargeable pour que le recruteur puisse la garder ou la partager.",
         "status": "pending"
     },
@@ -888,7 +986,9 @@
         "jour": 99,
         "role": "Tech Lead",
         "fichier_cible": "backend/main.py",
-        "fichiers_contexte": ["backend/main.py"],
+        "fichiers_contexte": [
+            "backend/main.py"
+        ],
         "description": "Passe l'API au peigne fin avant la prod. Désactive l'auto-génération des documentations Swagger (`docs_url=None`, `redoc_url=None`) si on est en environnement de production pour des raisons de sécurité. Vérifie que toutes les règles CORS sont strictes et n'autorisent plus `*`.",
         "status": "pending"
     },
@@ -896,7 +996,9 @@
         "jour": 100,
         "role": "Product Owner",
         "fichier_cible": "README.md",
-        "fichiers_contexte": ["README.md"],
+        "fichiers_contexte": [
+            "README.md"
+        ],
         "description": "Mise à jour finale du README pour la V2. Documente toutes les nouvelles fonctionnalités : Authentification JWT, Traitement par lots de CV, Mode Sombre, Export PDF, Métriques Prometheus, Dashboard Admin, et instructions de déploiement en production via PostgreSQL et Nginx.",
         "status": "pending"
     }
