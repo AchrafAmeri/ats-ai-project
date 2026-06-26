@@ -518,7 +518,7 @@
             "frontend/dashboard.html"
         ],
         "description": "Crée le script pour le dashboard. Ajoute un événement `DOMContentLoaded` qui fait un appel `fetch` en GET vers `http://127.0.0.1:8000/api/v1/history`. Récupère le JSON retourné et fais un `console.log` pour vérifier que les données arrivent bien du backend.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 53,
