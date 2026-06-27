@@ -529,7 +529,7 @@
             "frontend/assets/js/dashboard.js"
         ],
         "description": "Modifie le script du dashboard pour injecter les données dans le tableau HTML. Boucle sur les résultats de l'API et crée des lignes `<tr>` dynamiques contenant la date, le candidat (s'il est extrait), le poste, et le score. Ajoute des badges de couleur Tailwind (vert, orange, rouge) selon le score.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 54,
