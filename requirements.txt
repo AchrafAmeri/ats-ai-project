@@ -8,3 +8,5 @@ google-genai
 pytest
 httpx
 sqlalchemy
+passlib[bcrypt]
+pyjwt

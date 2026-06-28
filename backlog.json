@@ -539,7 +539,7 @@
             "requirements.txt"
         ],
         "description": "Prépare l'ajout de l'authentification. Ajoute les dépendances `passlib[bcrypt]`, `pyjwt` et `python-multipart` à la fin de requirements.txt pour gérer le hachage des mots de passe et la création de tokens JWT.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 55,
