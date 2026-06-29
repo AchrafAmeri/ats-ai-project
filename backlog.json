@@ -549,7 +549,7 @@
             "backend/db_models.py"
         ],
         "description": "Ajoute la table des utilisateurs. Crée une nouvelle classe `User(Base)` avec `__tablename__ = 'users'`. Ajoute `id`, `email` (unique=True), `hashed_password`, et `is_active` (Boolean). Ajoute aussi une clé étrangère `user_id` dans la table `AnalysisRecord` pour lier chaque analyse à un recruteur.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 56,
