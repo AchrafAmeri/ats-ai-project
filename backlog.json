@@ -559,7 +559,7 @@
             "backend/models.py"
         ],
         "description": "Crée les schémas Pydantic pour l'authentification. Ajoute `UserCreate` (email, password), `UserResponse` (id, email, sans le mot de passe !), et `Token` (access_token, token_type).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 57,
