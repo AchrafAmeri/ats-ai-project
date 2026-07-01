@@ -569,7 +569,7 @@
             "backend/config.py"
         ],
         "description": "Crée le module de sécurité. Implémente la configuration de `CryptContext` avec `passlib` pour hasher et vérifier les mots de passe. Crée une fonction `create_access_token(data: dict, expires_delta: timedelta)` qui utilise `jwt.encode` pour générer un jeton avec une clé secrète (à ajouter dans config.py).",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 58,
