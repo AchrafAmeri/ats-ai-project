@@ -581,7 +581,7 @@
             "backend/models.py"
         ],
         "description": "Crée un nouveau routeur pour l'authentification. Ajoute une route POST `/register` qui prend un `UserCreate`, vérifie si l'email existe, hashe le mot de passe, et sauvegarde l'utilisateur. Ajoute une route POST `/login` utilisant `OAuth2PasswordRequestForm` de FastAPI pour vérifier les identifiants et retourner un JWT.",
-        "status": "pending"
+        "status": "done"
     },
     {
         "jour": 59,
